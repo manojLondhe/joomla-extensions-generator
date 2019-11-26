@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_{{ constantCase componentName }}_TITLE_FORM_VIEW_{{ constantCase entityName }}" option="View">
+		<message><![CDATA[COM_{{ constantCase componentName }}_TITLE_FORM_VIEW_{{ constantCase entityName }}_DESC]]></message>
+	</layout>
+	<fields name="params">
+	</fields>
+</metadata>
