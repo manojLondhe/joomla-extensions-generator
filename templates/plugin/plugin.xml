@@ -12,6 +12,7 @@
 
 	<files>
 		<filename plugin="{{ lowerCase pluginName }}">{{ lowerCase pluginName }}.php</filename>
+		<filename>index.html</filename>
 	</files>
 
 	<languages folder="language">
