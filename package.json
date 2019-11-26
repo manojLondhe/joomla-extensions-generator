@@ -1,7 +1,10 @@
 {
-  "name": "plop-example",
+  "name": "joomla-extensions-generator-using-plop",
   "devDependencies": {
     "inquirer-directory": "^2.1.0",
-    "plop": "^2.1.0"
+    "plop": "^2.5.3"
+  },
+  "dependencies": {
+    "plop": "^2.5.3"
   }
 }
