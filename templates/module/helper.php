@@ -7,7 +7,8 @@
  * @license     {{ licence }}
  */
 
-defined('_JEXEC') or die;
+// No direct access
+defined('_JEXEC') or die('Restricted access');
 
 /**
  * Helper for {{ lowerCase moduleName }}

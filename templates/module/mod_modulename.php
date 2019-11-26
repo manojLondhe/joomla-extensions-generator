@@ -7,7 +7,8 @@
  * @license     {{ licence }}
  */
 
-defined('_JEXEC') or die;
+// No direct access
+defined('_JEXEC') or die('Restricted access');
 
 // Include the statistics functions only once
 JLoader::register('Mod{{ sentenceCase moduleName }}Helper', __DIR__ . '/helper.php');

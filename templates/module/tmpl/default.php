@@ -7,7 +7,8 @@
  * @license     {{ licence }}
  */
 
-defined('_JEXEC') or die;
+// No direct access
+defined('_JEXEC') or die('Restricted access');
 ?>
 
 <div class="mod-{{ lowerCase moduleName }} <?php echo $moduleClassSfx; ?>">
