@@ -12,7 +12,6 @@ defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Router\Route;
 
 jimport('joomla.application.component.view');
 
@@ -33,8 +32,6 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 
 	protected $params;
 
-	protected $canSave;
-
 	/**
 	 * Display the view
 	 *
@@ -46,24 +43,21 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 	 */
 	public function display($tpl = null)
 	{
-		$this->app   = Factory::getApplication();
-		$this->user  = Factory::getUser();
-		$this->input = $this->app->input;
+		$this->app  = Factory::getApplication();
+		$this->user = Factory::getUser();
 
-		if (!$this->user->id)
-		{
-			$uri         = $this->input->server->get('REQUEST_URI');
-			$redirectUrl = base64_encode($uri);
-			$msg         = Text::_('COM_{{ constantCase componentName }}_ERROR_MESSAGE_NOT_AUTHORISED');
+		$this->state         = $this->get('State');
+		$this->items         = $this->get('Items');
+		$this->pagination    = $this->get('Pagination');
+		$this->params        = $this->app->getParams('com_{{ lowerCase componentName }}');
+		$this->filterForm    = $this->get('FilterForm');
+		$this->activeFilters = $this->get('ActiveFilters');
 
-			$this->app->redirect(Route::_('index.php?option=com_users&view=login&return=' . $redirectUrl, false), $msg);
-		}
-
-		$this->state   = $this->get('State');
-		$this->item    = $this->get('Item');
-		$this->params  = $this->app->getParams('com_{{ lowerCase componentName }}');
-		$this->canSave = $this->get('CanSave');
-		$this->form    = $this->get('Form');
+		$this->canCreate  = $this->user->authorise('core.create', 'com_{{ lowerCase componentName }}') && file_exists(JPATH_COMPONENT . '/models/forms/{{ lowerCase entityName }}form.xml');
+		$this->canEdit    = $this->user->authorise('core.edit', 'com_{{ lowerCase componentName }}')   && file_exists(JPATH_COMPONENT . '/models/forms/{{ lowerCase entityName }}form.xml');
+		$this->canCheckin = $this->user->authorise('core.manage', 'com_{{ lowerCase componentName }}');
+		$this->canChange  = $this->user->authorise('core.edit.state', 'com_{{ lowerCase componentName }}');
+		$this->canDelete  = $this->user->authorise('core.delete', 'com_{{ lowerCase componentName }}');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -71,58 +65,9 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 			throw new Exception(implode("\n", $errors));
 		}
 
-		if (!$this->isAuthorised())
-		{
-			throw new Exception(Text::_('COM_{{ constantCase componentName }}_ERROR_MESSAGE_NOT_AUTHORISED'), 403);
-		}
-
 		$this->prepareDocument();
 
 		parent::display($tpl);
-	}
-
-	/**
-	 * checks if user has access to create or edit record
-	 *
-	 * @return boolean
-	 *
-	 * @throws Exception
-	 */
-	protected function isAuthorised()
-	{
-		$authorised = false;
-
-		// New record
-		if (empty($this->item->id))
-		{
-			if ($this->user->authorise('core.create', 'com_{{ lowerCase componentName }}'))
-			{
-				$authorised = true;
-			}
-		}
-		// Edit record
-		else
-		{
-			// User has access to edit any record
-			if ($this->user->authorise('core.edit', 'com_{{ lowerCase componentName }}'))
-			{
-				$authorised = true;
-			}
-			else
-			{
-				// If item has created_by field
-				if (isset($this->item->created_by))
-				{
-					// User has access to edit own record && user is owner of this record
-					if ($this->user->authorise('core.edit.own', 'com_{{ lowerCase componentName }}') && $this->item->created_by == $this->user->id)
-					{
-						$authorised = true;
-					}
-				}
-			}
-		}
-
-		return $authorised;
 	}
 
 	/**
@@ -181,5 +126,17 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 		{
 			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
+	}
+
+	/**
+	 * Check if state is set
+	 *
+	 * @param   mixed  $state  State
+	 *
+	 * @return bool
+	 */
+	public function getState($state)
+	{
+		return isset($this->state->{$state}) ? $this->state->{$state} : false;
 	}
 }

@@ -10,9 +10,9 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\HTML\HTMLHelper;
-use \Joomla\CMS\Language\Text;
-use \Joomla\CMS\Router\Route;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('behavior.formvalidation');
@@ -20,7 +20,7 @@ HTMLHelper::_('formbehavior.chosen', 'select');
 HTMLHelper::_('bootstrap.tooltip');
 ?>
 
-<div class="{{ lowerCase entityName }}-edit front-end-edit row-fluid">
+<div class="{{ lowerCase entityName }}-edit row-fluid">
 	<div class="row-fluid">
 		<?php
 		if (!empty($this->item->id))
@@ -79,7 +79,7 @@ HTMLHelper::_('bootstrap.tooltip');
 		<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
 		<input type="hidden" name="option" value="com_{{ lowerCase componentName }}"/>
-		<input type="hidden" name="task" value="{{ lowerCase viewName }} .save"/>
+		<input type="hidden" name="task" value="{{ lowerCase viewName }}.save"/>
 		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </div>

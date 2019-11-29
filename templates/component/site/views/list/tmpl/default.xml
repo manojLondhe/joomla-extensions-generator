@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_{{ constantCase componentName }}_TITLE_LIST_VIEW_{{ constantCase entityName }}" option="View">
+		<message><![CDATA[COM_{{ constantCase componentName }}_TITLE_LIST_VIEW_{{ constantCase entityName }}_DESC]]></message>
+	</layout>
+</metadata>

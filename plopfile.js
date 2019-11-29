@@ -314,6 +314,16 @@ module.exports = function (plop) {
 				}
 			},
 			{
+				type: 'list',
+				name: 'filesArea',
+				message: 'You want to build view for admin or site area?',
+				choices: ['site', 'admin'],
+				validate: function (value) {
+					if ((/.+/).test(value)) { return true; }
+					return 'View area is required';
+				}
+			},
+			{
 				type: 'input',
 				name: 'viewName',
 				message: 'What is your view name (eg: records( list) / recordform (form)/ record (details))?',
@@ -399,79 +409,317 @@ module.exports = function (plop) {
 			var actions = [];
 			var action = {};
 
-			switch (data.viewType)
+			switch (data.filesArea)
 			{
-				case 'list':
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/components/{{ lowerCase componentName }}/models/{{ lowerCase viewName }}.php',
-						templateFile: 'templates/component/site/models/list.php',
-						abortOnFail: true
-					};
+				/////////////////
+				// Frontend files
+				/////////////////
+				case 'site':
+					switch (data.viewType)
+					{
+						/////////////////
+						case 'list':
+							// Model
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/models/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/site/models/list.php',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
+
+							// Add filters.xml
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/models/forms/filter_{{ lowerCase viewName }}.xml',
+								templateFile: 'templates/component/site/models/forms/filter_list.xml',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/view.html.php',
+								templateFile: 'templates/component/site/views/list/view.html.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View - tmpl
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/default.php',
+								templateFile: 'templates/component/site/views/list/tmpl/default.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View - menu XML
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/default.xml',
+								templateFile: 'templates/component/site/views/list/tmpl/default.xml',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add controller
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/controllers/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/site/controllers/list.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Lang. file for list
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/languages/site/en-GB/en-GB.{{ lowerCase viewName }}.ini',
+								templateFile: 'templates/component/languages/site/en-GB/en-GB.list.ini',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+						break;
+
+						/////////////////
+						case 'form':
+							// Add model
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/models/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/site/models/form.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add form.xml
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/models/forms/{{ lowerCase viewName }}.xml',
+								templateFile: 'templates/component/site/models/forms/form.xml',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/view.html.php',
+								templateFile: 'templates/component/site/views/form/view.html.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View - tmpl
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/default.php',
+								templateFile: 'templates/component/site/views/form/tmpl/default.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View - menu XML
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/default.xml',
+								templateFile: 'templates/component/site/views/form/tmpl/default.xml',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add controller
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/controllers/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/site/controllers/form.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add table class
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/tables/{{ lowerCase entityName }}.php',
+								templateFile: 'templates/component/administrator/tables/table.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Lang. file for form
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/languages/site/en-GB/en-GB.{{ lowerCase viewName }}.ini',
+								templateFile: 'templates/component/languages/site/en-GB/en-GB.form.ini',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+						break;
+
+						default:
+					}
 				break;
 
-				case 'form':
-					// Add model
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/models/{{ lowerCase viewName }}.php',
-						templateFile: 'templates/component/site/models/form.php',
-						abortOnFail: true
-					};
+				/////////////////
+				// Backend files
+				/////////////////
+				case 'admin':
+					switch (data.viewType)
+					{
+						case 'list':
+							// Add model
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/models/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/administrator/models/list.php',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
 
-					// Add form.xml
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/models/forms/{{ lowerCase viewName }}.xml',
-						templateFile: 'templates/component/site/models/forms/form.xml',
-						abortOnFail: true
-					};
+							// Add filters.xml
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/models/forms/filter_{{ lowerCase viewName }}.xml',
+								templateFile: 'templates/component/administrator/models/forms/filter_list.xml',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
 
-					// View
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/view.html.php',
-						templateFile: 'templates/component/site/views/form/view.html.php',
-						abortOnFail: true
-					};
+							// View
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/view.html.php',
+								templateFile: 'templates/component/administrator/views/list/view.html.php',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
 
-					// View - tmpl
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/default.php',
-						templateFile: 'templates/component/site/views/form/tmpl/default.php',
-						abortOnFail: true
-					};
+							// View - tmpl
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/default.php',
+								templateFile: 'templates/component/administrator/views/list/tmpl/default.php',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
 
-					// Add controller
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/components/com_{{ lowerCase componentName }}/controllers/{{ lowerCase viewName }}.php',
-						templateFile: 'templates/component/site/controllers/form.php',
-						abortOnFail: true
-					};
+							// Add controller
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/controllers/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/administrator/controllers/list.php',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
 
-					// Lang. file for form
-					action = {
-						type: 'add',
-						path: 'output/components/{{ lowerCase componentName }}/languages/en-GB/en-GB.{{ lowerCase viewName }}.ini',
-						templateFile: 'templates/component/languages/site/en-GB/en-GB.form.ini',
-						abortOnFail: true
-					};
+							// Lang. file for list
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/languages/administrator/en-GB/en-GB.{{ lowerCase viewName }}.ini',
+								templateFile: 'templates/component/languages/administrator/en-GB/en-GB.list.ini',
+								abortOnFail: true
+							};
 
-					actions.push(action);
+							actions.push(action);
+						break;
+
+						/////////////////
+						case 'form':
+							// Add model
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/models/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/administrator/models/form.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add form.xml
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/models/forms/{{ lowerCase viewName }}.xml',
+								templateFile: 'templates/component/administrator/models/forms/form.xml',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/view.html.php',
+								templateFile: 'templates/component/administrator/views/form/view.html.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// View - tmpl
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/views/{{ lowerCase viewName }}/tmpl/edit.php',
+								templateFile: 'templates/component/administrator/views/form/tmpl/edit.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add controller
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/controllers/{{ lowerCase viewName }}.php',
+								templateFile: 'templates/component/administrator/controllers/form.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Add table class
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/administrator/components/com_{{ lowerCase componentName }}/tables/{{ lowerCase entityName }}.php',
+								templateFile: 'templates/component/administrator/tables/table.php',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+
+							// Lang. file for form
+							action = {
+								type: 'add',
+								path: 'output/components/{{ lowerCase componentName }}/languages/administrator/en-GB/en-GB.{{ lowerCase viewName }}.ini',
+								templateFile: 'templates/component/languages/administrator/en-GB/en-GB.form.ini',
+								abortOnFail: true
+							};
+
+							actions.push(action);
+						break;
+
+						default:
+					}
 				break;
 
 				default:

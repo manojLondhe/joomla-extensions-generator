@@ -10,10 +10,10 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\Factory;
-use \Joomla\CMS\Router\Route;
-use \Joomla\CMS\Session\Session;
-use \Joomla\CMS\Language\Text;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
+use Joomla\CMS\Language\Text;
 
 /**
  * Controller for form for {{ camelCase entityName }}
@@ -62,7 +62,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 		}
 
 		// Redirect to the edit screen.
-		$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase viewName }}', false));
+		$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase viewName }}&id=' . $editId, false));
 	}
 
 	/**
@@ -81,7 +81,78 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 		Session::checkToken() or jexit(Text::_('JINVALID_TOKEN'));
 
 		// Initialise variables.
-		$app = Factory::getApplication();
+		$app   = Factory::getApplication();
+		$model = $this->getModel('{{ sentenceCase entityName }}Form', '{{ sentenceCase componentName }}Model');
+
+		// Get the user data.
+		$data = Factory::getApplication()->input->get('jform', array(), 'array');
+
+		// Validate the posted data.
+		$form = $model->getForm();
+
+		if (!$form)
+		{
+			throw new Exception($model->getError(), 500);
+		}
+
+		// Validate the posted data.
+		$data = $model->validate($form, $data);
+
+		// Check for errors.
+		if ($data === false)
+		{
+			// Get the validation messages.
+			$errors = $model->getErrors();
+
+			// Push up to three validation messages out to the user.
+			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
+			{
+				if ($errors[$i] instanceof Exception)
+				{
+					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
+				}
+				else
+				{
+					$app->enqueueMessage($errors[$i], 'warning');
+				}
+			}
+
+			$input = $app->input;
+			$jform = $input->get('jform', array(), 'ARRAY');
+
+			// Save the data in the session.
+			$app->setUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.data', $jform);
+
+			// Redirect back to the edit screen.
+			$id = (int) $app->getUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id');
+			$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}form&id=' . $id, false));
+
+			$this->redirect();
+		}
+
+		// Attempt to save the data.
+		$return = $model->save($data);
+
+		// Check for errors.
+		if ($return === false)
+		{
+			// Save the data in the session.
+			$app->setUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.data', $data);
+
+			// Redirect back to the edit screen.
+			$id = (int) $app->getUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id');
+			$this->setMessage(Text::sprintf('Save failed', $model->getError()), 'warning');
+			$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}form&id=' . $id, false));
+		}
+
+		// Check in the profile.
+		if ($return)
+		{
+			$model->checkin($return);
+		}
+
+		// Clear the profile id from the session.
+		$app->setUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id', null);
 
 		// Redirect to the list screen.
 		$this->setMessage(Text::_('COM_{{ constantCase componentName }}_ITEM_SAVED_SUCCESSFULLY'));
