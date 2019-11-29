@@ -29,4 +29,4 @@ Make sure you have `npm` installed globally
 
 **Customizing:**
 
-If you wish, you can change default copyright, licence by editng plopfile.js file
+If you wish, you can change default copyright, licence by editng `plopfile.js` file
