@@ -1,4 +1,4 @@
-**What does this do?**
+# What does this do?
 
 This lets you create a basic skeleton for a new 
 - Joomla plugin (Joomla 3.x)
@@ -11,11 +11,11 @@ This lets you create a basic skeleton for a new
 
 Thus saving your precious time!
 
-**Prerequisites:**
+# Prerequisites:
 
 Make sure you have `npm` installed globally
 
-**Steps to use:**
+# Steps to use
 
 1. `git clone` this repo
 
@@ -27,6 +27,6 @@ Make sure you have `npm` installed globally
 
 5. Find output files generated in `output` directory in repo's root directory
 
-**Customizing:**
+# Customizing
 
 If you wish, you can change default copyright, licence by editng `plopfile.js` file
