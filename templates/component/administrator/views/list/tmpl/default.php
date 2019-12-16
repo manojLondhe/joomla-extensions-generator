@@ -180,7 +180,7 @@ $sortFields = $this->getSortFields();
 								if ($canEdit)
 								{
 									?>
-									<a href="<?php echo JRoute::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}.edit&id=' . (int) $item->id); ?>">
+									<a href="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}.edit&id=' . (int) $item->id); ?>">
 										<?php echo $this->escape($item->name); ?></a>
 									<?php
 								}

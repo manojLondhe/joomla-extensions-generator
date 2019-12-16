@@ -24,7 +24,7 @@ HTMLHelper::_('bootstrap.tooltip');
 
 <div class="{{ lowerCase entityName }}-edit row-fluid">
 	<form
-		action="<?php echo JRoute::_('index.php?option=com_{{ lowerCase componentName }}&layout=edit&id=' . (int) $this->item->id); ?>"
+		action="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&layout=edit&id=' . (int) $this->item->id); ?>"
 		method="post" enctype="multipart/form-data" name="adminForm" id="{{ lowerCase entityName }}-form" class="form-validate form-horizontal">
 
 		<?php // @echo $this->form->renderField('created_by'); ?>

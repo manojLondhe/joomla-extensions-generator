@@ -73,7 +73,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 			if ($checkin && $model->checkin($data['id']) === false)
 			{
 				// Check-in failed. Go back to the item and display a notice.
-				$this->setError(\JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
+				$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
 				$this->setMessage($this->getError(), 'error');
 				$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&id=' . $id, false));
 
@@ -125,7 +125,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 			// Redirect back to the edit screen.
 			// $id = (int) $app->getUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id');
 
-			$this->setRedirect(JRoute::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&layout=edit&id=' . $id, false));
+			$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&layout=edit&id=' . $id, false));
 
 			$this->redirect();
 		}
@@ -160,7 +160,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 			return false;
 		}
 
-		$this->setMessage(JText::_('COM_{{ constantCase componentName }}_MSG_SUCCESS_SAVE_{{ constantCase viewName }}'), 'Success');
+		$this->setMessage(Text::_('COM_{{ constantCase componentName }}_MSG_SUCCESS_SAVE_{{ constantCase viewName }}'), 'Success');
 
 		// Redirect the user and adjust session state based on the chosen task.
 		switch ($task)

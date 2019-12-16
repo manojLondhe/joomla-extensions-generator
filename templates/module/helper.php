@@ -28,8 +28,8 @@ class Mod{{ sentenceCase moduleName }}Helper
 	{
 		$rows = array();
 
-		/*$app  = JFactory::getApplication();
-		$db   = JFactory::getDbo();
+		/*$app  = Factory::getApplication();
+		$db   = Factory::getDbo();
 
 
 

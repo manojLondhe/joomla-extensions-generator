@@ -92,7 +92,7 @@ $listDirn  = $this->state->get('list.direction');
 
 								<td class="center">
 									<a class="btn btn-micro <?php echo $class; ?>"
-										href="<?php echo ($this->canChange) ? JRoute::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}.publish&id=' . $item->id . '&state=' . (($item->state + 1) % 2), false, 2) : '#'; ?>">
+										href="<?php echo ($this->canChange) ? Route::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}.publish&id=' . $item->id . '&state=' . (($item->state + 1) % 2), false, 2) : '#'; ?>">
 										<?php
 										if ($item->state == 1)
 										{
@@ -121,7 +121,7 @@ $listDirn  = $this->state->get('list.direction');
 									echo JHtml::_('jgrid.checkedout', $i, $item->uEditor, $item->checked_out_time, '{{ lowerCase entityName }}s.', $this->canCheckin);
 								}
 								?>
-								<a href="<?php echo JRoute::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&id=' . (int) $item->id); ?>">
+								<a href="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&id=' . (int) $item->id); ?>">
 									<?php echo $this->escape($item->name); ?>
 								</a>
 							</td>
@@ -138,7 +138,7 @@ $listDirn  = $this->state->get('list.direction');
 									if ($this->canEdit)
 									{
 										?>
-										<a href="<?php echo JRoute::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}form.edit&id=' . $item->id, false, 2); ?>"
+										<a href="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}form.edit&id=' . $item->id, false, 2); ?>"
 											class="btn btn-mini" type="button">
 											<i class="icon-edit" ></i>
 										</a>
@@ -150,7 +150,7 @@ $listDirn  = $this->state->get('list.direction');
 									if ($this->canDelete)
 									{
 										?>
-										<a href="<?php echo JRoute::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}form.remove&id=' . $item->id, false, 2); ?>"
+										<a href="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}form.remove&id=' . $item->id, false, 2); ?>"
 											class="btn btn-mini delete-button" type="button">
 											<i class="icon-trash" ></i>
 										</a>
