@@ -32,7 +32,7 @@ HTMLHelper::_('bootstrap.tooltip');
 
 		<div class="row-fluid">
 			<?php echo $this->form->renderField('name'); ?>
-		</div">
+		</div>
 
 		<input type="hidden" name="jform[id]"               value="<?php echo $this->item->id; ?>" />
 		<input type="hidden" name="jform[ordering]"         value="<?php echo $this->item->ordering; ?>" />

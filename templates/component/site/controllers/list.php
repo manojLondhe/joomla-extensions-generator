@@ -20,15 +20,15 @@ defined('_JEXEC') or die('Restricted access');
 class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} extends {{ sentenceCase componentName }}Controller
 {
 	/**
-	 * Proxy for getModel.
+	 * Method to get a model object, loading it if required.
 	 *
 	 * @param   string  $name    The model name. Optional.
-	 * @param   string  $prefix  The class prefix. Optional
-	 * @param   array   $config  Configuration array for model. Optional
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return object   The model
+	 * @return  \JModelLegacy|boolean  Model object on success; otherwise false on failure.
 	 *
-	 * @since  1.6
+	 * @since   {{ version }}
 	 */
 	public function &getModel($name = '{{ sentenceCase entityName }}', $prefix = '{{ sentenceCase componentName }}Model', $config = array())
 	{

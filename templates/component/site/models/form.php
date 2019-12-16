@@ -42,7 +42,7 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 	 */
 	protected function populateState()
 	{
-		$app = Factory::getApplication('com_{{ lowerCase componentName }}');
+		$app = Factory::getApplication();
 
 		// Load state from the request userState on edit or from the passed variable on default
 		if (Factory::getApplication()->input->get('layout') == 'edit')

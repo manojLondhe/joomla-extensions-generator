@@ -17,9 +17,9 @@
 		<field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset" />
 
 		<field name="name" type="text" required="true"
-			label="COM_{{ constantCase componentName }}_FORM_LBL_{{ constantCase viewName }}_NAME"
-			description="COM_{{ constantCase componentName }}_FORM_DESC_{{ constantCase viewName }}_NAME"
-			hint="COM_{{ constantCase componentName }}_FORM_LBL_{{ constantCase viewName }}_NAME" />
+			label="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_NAME_LBL"
+			description="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_NAME_DESC"
+			hint="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_NAME_LBL" />
 
 		<!--Add other fields here-->
 	</fieldset>

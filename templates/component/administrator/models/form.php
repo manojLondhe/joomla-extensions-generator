@@ -222,4 +222,109 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 			}
 		}
 	}
+
+	/**
+	 * Method to save the form data.
+	 *
+	 * @param   array  $data  The form data.
+	 *
+	 * @return  boolean  True on success, False on error.
+	 *
+	 * @since   1.6
+	 */
+	public function save($data)
+	{
+		$user  = Factory::getUser();
+		$table = $this->getTable();
+		$id    = (!empty($data['id'])) ? $data['id'] : (int) $this->getState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id');
+		$state = (!empty($data['state'])) ? 1 : 0;
+		$isNew = true;
+
+		// Uncomment this if needed
+
+		/*
+		$date = Factory::getDate();
+
+		if ($data['id'])
+		{
+			$data['modified_by']   = $user->id;
+			$data['modified_date'] = $date->toSql(true);
+		}
+		else
+		{
+			$data['created_by']   = $user->id;
+			$data['created_date'] = $date->toSql(true);
+		}
+		*/
+
+		// Allow an exception to be thrown.
+		try
+		{
+			if ($id)
+			{
+				// Check the user can edit this item
+				$authorised = $user->authorise('core.edit', 'com_{{ lowerCase componentName }}') || $authorised = $user->authorise('core.edit.own', 'com_{{ lowerCase componentName }}');
+			}
+			else
+			{
+				// Check the user can create new items in this section
+				$authorised = $user->authorise('core.create', 'com_{{ lowerCase componentName }}');
+			}
+
+			if ($authorised !== true)
+			{
+				throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
+			}
+
+			// Load the row if saving an existing record.
+			if ($id > 0)
+			{
+				$table->load($id);
+				$isNew = false;
+			}
+
+			// Bind the data.
+			if (!$table->bind($data))
+			{
+				$this->setError($table->getError());
+
+				return false;
+			}
+
+			// Prepare the row for saving
+			$this->prepareTable($table);
+
+			// Check the data.
+			if (!$table->check())
+			{
+				$this->setError($table->getError());
+
+				return false;
+			}
+
+			// Store the data.
+			if (!$table->store())
+			{
+				$this->setError($table->getError());
+
+				return false;
+			}
+		}
+		catch (\Exception $e)
+		{
+			$this->setError($e->getMessage());
+
+			return false;
+		}
+
+		// IMPORTANT to set new id in state, it is fetched in controller later
+		if (isset($table->id))
+		{
+			$this->setState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id', $table->id);
+		}
+
+		$this->setState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.new', $isNew);
+
+		return true;
+	}
 }

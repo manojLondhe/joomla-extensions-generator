@@ -20,15 +20,15 @@ defined('_JEXEC') or die('Restricted access');
 class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\Controller\AdminController
 {
 	/**
-	 * Proxy for getModel.
+	 * Method to get a model object, loading it if required.
 	 *
-	 * @param   string  $name    Optional. Model name
-	 * @param   string  $prefix  Optional. Class prefix
-	 * @param   array   $config  Optional. Configuration array for model
+	 * @param   string  $name    The model name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  object  The Model
+	 * @return  \JModelLegacy|boolean  Model object on success; otherwise false on failure.
 	 *
-	 * @since    {{ version }}
+	 * @since   {{ version }}
 	 */
 	public function getModel($name = '{{ sentenceCase entityName }}', $prefix = '{{ sentenceCase componentName }}Model', $config = array())
 	{
