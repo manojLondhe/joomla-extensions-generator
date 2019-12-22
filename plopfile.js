@@ -728,4 +728,97 @@ module.exports = function (plop) {
 			return actions;
 		}
 	});
+
+	// CLI generator
+	plop.setGenerator('Create a CLI file', {
+		description: 'Lets you create a Joomla CLI file',
+		prompts: [
+			{
+				type: 'input',
+				name: 'cliFileName',
+				message: 'What is your CLI file name?',
+				validate: function (value) {
+					if ((/.+/).test(value)) { return true; }
+					return 'CLI file name is required';
+				}
+			},
+			{
+				type: 'input',
+				name: 'cliTitleComment',
+				message: 'What is your CLI file title comment?',
+				validate: function (value) {
+					if ((/.+/).test(value)) { return true; }
+					return 'CLI file title comment is required';
+				}
+			},
+			{
+				type: 'input',
+				name: 'version',
+				message: 'What is your CLI file version?',
+				default: '1.0.0',
+				validate: function (value) {
+					if ((/.+/).test(value)) {
+						return true;
+					}
+				}
+			},
+			{
+				type: 'input',
+				name: 'author',
+				message: "What is your CLI file's author name?",
+				default: 'Techjoomla',
+				validate: function (value) {
+					if ((/.+/).test(value)) {
+						return true;
+					}
+				}
+			},
+			{
+				type: 'input',
+				name: 'authorEmail',
+				message: "What is your CLI file's author email?",
+				default: 'contact@techjoomla.com',
+				validate: function (value) {
+					if ((/.+/).test(value)) {
+						return true;
+					}
+				}
+			},
+			{
+				type: 'input',
+				name: 'copyright',
+				message: 'What is your copyright?',
+				default: 'Copyright (C) 2009 - 2019 Techjoomla. All rights reserved.',
+				validate: function (value) {
+					if ((/.+/).test(value)) {
+						return true;
+					}
+				}
+			},
+			{
+				type: 'input',
+				name: 'licence',
+				message: 'What is your module licence?',
+				default: 'http:/www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
+				validate: function (value) {
+					if ((/.+/).test(value)) {
+						return true;
+					}
+				}
+			},
+		],
+
+		actions: function(data) {
+			var actions = [
+				{
+					type: 'add',
+					path: 'output/cli/{{ lowerCase cliFileName }}.php',
+					templateFile: 'templates/cli/cli_filename.php',
+					abortOnFail: true
+				}
+			];
+
+			return actions;
+		}
+	});
 };
