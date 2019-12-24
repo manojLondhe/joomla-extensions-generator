@@ -24,6 +24,8 @@ use Joomla\CMS\Session\Session;
  */
 class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\Controller\FormController
 {
+	protected $view_list;
+
 	/**
 	 * Constructor
 	 *
@@ -63,7 +65,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 		$checkin = property_exists($table, $table->getColumnAlias('checked_out'));
 
 		// Populate the row id from the session.
-		$id        = $this->input->getInt('id');
+		$id         = $this->input->getInt('id');
 		$data['id'] = $id;
 
 		// The save2copy task needs to be handled slightly differently.
@@ -119,12 +121,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 			// Save the data in the session.
 			$app->setUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.data', $data);
 
-			// Tweak *important
-			// $app->setUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id', $data['id']);
-
-			// Redirect back to the edit screen.
-			// $id = (int) $app->getUserState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id');
-
+			// Redirect back to the edit screen
 			$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&layout=edit&id=' . $id, false));
 
 			$this->redirect();

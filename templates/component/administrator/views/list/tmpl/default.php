@@ -69,7 +69,10 @@ $sortFields = $this->getSortFields();
 						{
 							?>
 							<th width="1%" class="nowrap center hidden-phone">
-								<?php echo HTMLHelper::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+								<?php echo HTMLHelper::_(
+									'searchtools.sort', '',
+									'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING',
+									'icon-menu-2'); ?>
 							</th>
 							<?php
 						}

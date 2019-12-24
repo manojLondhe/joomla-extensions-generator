@@ -30,6 +30,8 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 
 	protected $form;
 
+	protected $user;
+
 	/**
 	 * Display the view
 	 *
@@ -41,6 +43,7 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 	 */
 	public function display($tpl = null)
 	{
+		$this->user  = Factory::getUser();
 		$this->state = $this->get('State');
 		$this->item  = $this->get('Item');
 		$this->form  = $this->get('Form');
@@ -110,12 +113,11 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 	{
 		Factory::getApplication()->input->set('hidemainmenu', true);
 
-		$user  = Factory::getUser();
 		$isNew = ($this->item->id == 0);
 
 		if (isset($this->item->checked_out))
 		{
-			$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
+			$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $this->user->get('id'));
 		}
 		else
 		{

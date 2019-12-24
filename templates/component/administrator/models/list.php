@@ -59,8 +59,8 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 		// List state information.
 		parent::populateState("a.{{ sortingColumn }}", "{{ lowerCase sortingDirection }}");
 
-		$context = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
-		$this->setState('filter.search', $context);
+		$search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$this->setState('filter.search', $search);
 	}
 
 	/**

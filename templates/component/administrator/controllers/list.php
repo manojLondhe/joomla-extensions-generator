@@ -26,14 +26,12 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 	 * @param   string  $prefix  The class prefix. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  \JModelLegacy|boolean  Model object on success; otherwise false on failure.
+	 * @return  JModelBase|JModelLegacy|boolean  Model object on success; otherwise false on failure.
 	 *
 	 * @since   {{ version }}
 	 */
 	public function getModel($name = '{{ sentenceCase entityName }}', $prefix = '{{ sentenceCase componentName }}Model', $config = array())
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-
-		return $model;
+		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}
 }

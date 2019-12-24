@@ -156,7 +156,7 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \J
 			'a.id'       => Text::_('JGRID_HEADING_ID'),
 			'a.ordering' => Text::_('JGRID_HEADING_ORDERING'),
 			'a.state'    => Text::_('JSTATUS'),
-			'a.name'     => Text::_('COM_{{ constantCase componentName }}_{{ constantCase viewName }}_NAME')
+			'a.name'     => Text::_('COM_{{ constantCase componentName }}_{{ constantCase viewName }}_NAME'),
 		);
 	}
 
