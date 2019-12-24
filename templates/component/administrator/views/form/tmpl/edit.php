@@ -20,6 +20,28 @@ HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('behavior.formvalidation');
 HTMLHelper::_('formbehavior.chosen', 'select');
 HTMLHelper::_('bootstrap.tooltip');
+
+$doc = Factory::getDocument();
+
+$script = "
+	Joomla.submitbutton = function (task) {
+		if (task == '{{ lowerCase viewName }}.cancel') {
+			Joomla.submitform(task, document.getElementById('{{ lowerCase entityName }}-form'));
+		}
+		else {
+			if (task != '{{ lowerCase viewName }}.cancel' && document.formvalidator.isValid(document.id('{{ lowerCase entityName }}-form'))) {
+				Joomla.submitform(task, document.getElementById('{{ lowerCase entityName }}-form'));
+			}
+			else {
+				alert(Joomla.JText._('JGLOBAL_VALIDATION_FORM_FAILED'));
+			}
+		}
+	}
+";
+
+$doc->addScriptDeclaration($script);
+
+Text::script('JGLOBAL_VALIDATION_FORM_FAILED');
 ?>
 
 <div class="{{ lowerCase entityName }}-edit row-fluid">
@@ -39,25 +61,8 @@ HTMLHelper::_('bootstrap.tooltip');
 		<input type="hidden" name="jform[state]"            value="<?php echo $this->item->state; ?>" />
 		<input type="hidden" name="jform[checked_out]"      value="<?php echo $this->item->checked_out; ?>" />
 		<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
-
-		<input type="hidden" name="task" value=""/>
+		<input type="hidden" name="task"                    value=""/>
 
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>
-
-<script type="text/javascript">
-	Joomla.submitbutton = function (task) {
-		if (task == '{{ lowerCase viewName }}.cancel') {
-			Joomla.submitform(task, document.getElementById('{{ lowerCase entityName }}-form'));
-		}
-		else {
-			if (task != '{{ lowerCase viewName }}.cancel' && document.formvalidator.isValid(document.id('{{ lowerCase entityName }}-form'))) {
-				Joomla.submitform(task, document.getElementById('{{ lowerCase entityName }}-form'));
-			}
-			else {
-				alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
-			}
-		}
-	}
-</script>
