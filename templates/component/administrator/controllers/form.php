@@ -116,6 +116,10 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 				{
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				}
+				else
+				{
+					$app->enqueueMessage($errors[$i], 'warning');
+				}
 			}
 
 			// Save the data in the session.
