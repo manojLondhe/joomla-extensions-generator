@@ -10,12 +10,14 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Plugin\CMSPlugin;
+
 /**
  * Class for {{ sentenceCase pluginName }} {{ sentenceCase pluginType }} Plugin
  *
  * @since  {{ version }}
  */
-class Plg{{ sentenceCase pluginType }}{{ sentenceCase pluginName }} extends JPlugin
+class Plg{{ sentenceCase pluginType }}{{ sentenceCase pluginName }} extends CMSPlugin
 {
 	/**
 	 * Load the language file on instantiation.
