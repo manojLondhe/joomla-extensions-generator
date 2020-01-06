@@ -12,6 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * View for list of {{ camelCase entityName }}
@@ -20,7 +21,7 @@ use Joomla\CMS\Language\Text;
  *
  * @since    {{ version }}
  */
-class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\View\HtmlView
+class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends HtmlView
 {
 	protected $items;
 

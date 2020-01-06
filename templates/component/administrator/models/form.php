@@ -11,10 +11,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Table\Table;
-use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\String\StringHelper;
+use Joomla\CMS\MVC\Model\AdminModel;
 
 /**
  * Model for form for {{ camelCase entityName }}
@@ -23,7 +23,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since    {{ version }}
  */
-class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\Model\AdminModel
+class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends AdminModel
 {
 	/**
 	 * @var      string    The prefix to use with controller messages.
@@ -73,7 +73,7 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 			'{{ lowerCase viewName }}',
 			array(
 				'control'   => 'jform',
-				'load_data' => $loadData
+				'load_data' => $loadData,
 			)
 		);
 
@@ -141,63 +141,6 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 	}
 
 	/**
-	 * Method to duplicate an staff
-	 *
-	 * @param   array  &$pks  An array of primary key IDs.
-	 *
-	 * @return  boolean  True if successful.
-	 *
-	 * @throws  Exception
-	 */
-
-	/*public function duplicate(&$pks)
-	{
-		$user = Factory::getUser();
-
-		if (!$user->authorise('core.create', 'com_{{ lowerCase componentName}}'))
-		{
-			throw new Exception(Text::_('JERROR_CORE_CREATE_NOT_PERMITTED'));
-		}
-
-		$dispatcher = JEventDispatcher::getInstance();
-		$context    = $this->option . '.' . $this->name;
-
-		PluginHelper::importPlugin($this->events_map['save']);
-
-		$table = $this->getTable();
-
-		foreach ($pks as $pk)
-		{
-			if ($table->load($pk, true))
-			{
-				$table->id = 0;
-
-				if (!$table->check())
-				{
-					throw new Exception($table->getError());
-				}
-
-				$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, true));
-
-				if (in_array(false, $result, true) || !$table->store())
-				{
-					throw new Exception($table->getError());
-				}
-
-				$dispatcher->trigger($this->event_after_save, array($context, &$table, true));
-			}
-			else
-			{
-				throw new Exception($table->getError());
-			}
-		}
-
-		$this->cleanCache();
-
-		return true;
-	}*/
-
-	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
 	 * @param   JTable  $table  Table Object
@@ -208,8 +151,6 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 	 */
 	protected function prepareTable($table)
 	{
-		jimport('joomla.filter.output');
-
 		if (empty($table->id))
 		{
 			// Set ordering to the last item if not set
@@ -234,7 +175,6 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 	 */
 	public function save($data)
 	{
-		$user  = Factory::getUser();
 		$table = $this->getTable();
 		$id    = (!empty($data['id'])) ? $data['id'] : (int) $this->getState('com_{{ lowerCase componentName }}.edit.{{ lowerCase entityName }}.id');
 		$state = (!empty($data['state'])) ? 1 : 0;
@@ -260,22 +200,6 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 		// Allow an exception to be thrown.
 		try
 		{
-			if ($id)
-			{
-				// Check the user can edit this item
-				$authorised = $user->authorise('core.edit', 'com_{{ lowerCase componentName }}') || $authorised = $user->authorise('core.edit.own', 'com_{{ lowerCase componentName }}');
-			}
-			else
-			{
-				// Check the user can create new items in this section
-				$authorised = $user->authorise('core.create', 'com_{{ lowerCase componentName }}');
-			}
-
-			if ($authorised !== true)
-			{
-				throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
-			}
-
 			// Load the row if saving an existing record.
 			if ($id > 0)
 			{

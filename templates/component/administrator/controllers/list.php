@@ -10,6 +10,8 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Controller\AdminController;
+
 /**
  * List controller for {{ camelCase entityName }}
  *
@@ -17,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since    {{ version }}
  */
-class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\Controller\AdminController
+class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} extends AdminController
 {
 	/**
 	 * Method to get a model object, loading it if required.

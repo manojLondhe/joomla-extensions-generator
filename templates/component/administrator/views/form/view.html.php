@@ -12,8 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-
-jimport('joomla.application.component.view');
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * View to edit {{ camelCase componentName }}
@@ -22,7 +21,7 @@ jimport('joomla.application.component.view');
  *
  * @since    {{ version }}
  */
-class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\View\HtmlView
+class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends HtmlView
 {
 	protected $state;
 

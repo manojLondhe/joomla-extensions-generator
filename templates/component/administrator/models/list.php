@@ -10,6 +10,8 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Model\ListModel;
+
 /**
  * List model for {{ camelCase entityName }}
  *
@@ -17,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since    {{ version }}
  */
-class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \Joomla\CMS\MVC\Model\ListModel
+class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends ListModel
 {
 	/**
 	 * Constructor.
@@ -35,7 +37,7 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends \
 				'id', 'a.id',
 				'name', 'a.name',
 				'ordering', 'a.ordering',
-				'state', 'a.state'
+				'state', 'a.state',
 			);
 		}
 
