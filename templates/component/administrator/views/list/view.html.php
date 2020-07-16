@@ -11,6 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
 
@@ -34,7 +35,7 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends Ht
 	 *
 	 * @param   string  $tpl  Template name
 	 *
-	 * @return void
+	 * @return  mixed  A string if successful, otherwise an Error object.
 	 *
 	 * @throws Exception
 	 */
@@ -71,7 +72,9 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends Ht
 	protected function addToolbar()
 	{
 		$state = $this->get('State');
-		$canDo = {{ sentenceCase componentName }}Helper::getActions();
+
+		// $canDo = {{ sentenceCase componentName }}Helper::getActions();
+		$canDo = ContentHelper::getActions('com_{{ lowerCase componentName }}', '', 0);
 
 		JToolBarHelper::title(Text::_('COM_{{ constantCase componentName }}_{{ constantCase viewName }}_PAGE_TITLE'), 'list.png');
 
@@ -149,7 +152,7 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends Ht
 	/**
 	 * Method to order fields
 	 *
-	 * @return void
+	 * @return array
 	 */
 	protected function getSortFields()
 	{
@@ -166,7 +169,7 @@ class {{ sentenceCase componentName }}View{{ sentenceCase viewName }} extends Ht
 	 *
 	 * @param   mixed  $state  State
 	 *
-	 * @return bool
+	 * @return boolean
 	 */
 	public function getState($state)
 	{

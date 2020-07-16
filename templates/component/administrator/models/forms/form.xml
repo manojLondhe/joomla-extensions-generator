@@ -16,10 +16,10 @@
 
 		<field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset" />
 
-		<field name="name" type="text" required="true"
-			label="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_NAME_LBL"
-			description="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_NAME_DESC"
-			hint="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_NAME_LBL" />
+		<field name="title" type="text" required="true"
+			label="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_TITLE_LBL"
+			description="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_TITLE_DESC"
+			hint="COM_{{ constantCase componentName }}_FORM_{{ constantCase viewName }}_TITLE_LBL" />
 
 		<!--Add other fields here-->
 	</fieldset>

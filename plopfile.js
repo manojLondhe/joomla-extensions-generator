@@ -84,7 +84,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'copyright',
 				message: 'What is your copyright?',
-				default: 'Copyright (C) 2009 - 2019 Techjoomla. All rights reserved.',
+				default: 'Copyright (C) 2009 - 2020 Techjoomla. All rights reserved.',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -108,31 +108,31 @@ module.exports = function (plop) {
 			var actions = [
 				{
 					type: 'add',
-					path: 'output/plugins/{{ lowerCase pluginName }}/{{ lowerCase pluginName }}.php',
+					path: 'output/plugins/{{ lowerCase pluginType }}/{{ lowerCase pluginName }}/{{ lowerCase pluginName }}.php',
 					templateFile: 'templates/plugin/plugin.php',
 					abortOnFail: true
 				},
 				{
 					type: 'add',
-					path: 'output/plugins/{{ lowerCase pluginName }}/{{ lowerCase pluginName }}.xml',
+					path: 'output/plugins/{{ lowerCase pluginType }}/{{ lowerCase pluginName }}/{{ lowerCase pluginName }}.xml',
 					templateFile: 'templates/plugin/plugin.xml',
 					abortOnFail: true
 				},
 				{
 					type: 'add',
-					path: 'output/plugins/{{ lowerCase pluginName }}/index.html',
+					path: 'output/plugins/{{ lowerCase pluginType }}/{{ lowerCase pluginName }}/index.html',
 					templateFile: 'templates/plugin/index.html',
 					abortOnFail: true
 				},
 				{
 					type: 'add',
-					path: 'output/plugins/{{ lowerCase pluginName }}/language/en-GB/en-GB.plg_{{ lowerCase pluginType }}_{{ lowerCase pluginName }}.ini',
+					path: 'output/plugins/{{ lowerCase pluginType }}/{{ lowerCase pluginName }}/language/en-GB/en-GB.plg_{{ lowerCase pluginType }}_{{ lowerCase pluginName }}.ini',
 					templateFile: 'templates/plugin/language/en-GB/en-GB.plg_plugintype_pluginname.ini',
 					abortOnFail: true
 				},
 				{
 					type: 'add',
-					path: 'output/plugins/{{ lowerCase pluginName }}/language/en-GB/en-GB.plg_{{ lowerCase pluginType }}_{{ lowerCase pluginName }}.sys.ini',
+					path: 'output/plugins/{{ lowerCase pluginType }}/{{ lowerCase pluginName }}/language/en-GB/en-GB.plg_{{ lowerCase pluginType }}_{{ lowerCase pluginName }}.sys.ini',
 					templateFile: 'templates/plugin/language/en-GB/en-GB.plg_plugintype_pluginname.sys.ini',
 					abortOnFail: true
 				}
@@ -214,7 +214,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'copyright',
 				message: 'What is your copyright?',
-				default: 'Copyright (C) 2009 - 2019 Techjoomla. All rights reserved.',
+				default: 'Copyright (C) 2009 - 2020 Techjoomla. All rights reserved.',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -385,7 +385,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'copyright',
 				message: 'What is your copyright?',
-				default: 'Copyright (C) 2009 - 2019 Techjoomla. All rights reserved.',
+				default: 'Copyright (C) 2009 - 2020 Techjoomla. All rights reserved.',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -788,7 +788,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'copyright',
 				message: 'What is your copyright?',
-				default: 'Copyright (C) 2009 - 2019 Techjoomla. All rights reserved.',
+				default: 'Copyright (C) 2009 - 2020 Techjoomla. All rights reserved.',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;

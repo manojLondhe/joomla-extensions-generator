@@ -51,7 +51,7 @@ $listDirn  = $this->state->get('list.direction');
 						?>
 
 						<th class=''>
-							<?php echo JHtml::_('searchtools.sort',  'COM_{{ constantCase componentName }}_{{ constantCase viewName }}_NAME', 'a.name', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort',  'COM_{{ constantCase componentName }}_{{ constantCase viewName }}_NAME', 'a.title', $listDirn, $listOrder); ?>
 						</th>
 
 						<th class=''>
@@ -122,7 +122,7 @@ $listDirn  = $this->state->get('list.direction');
 								}
 								?>
 								<a href="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}&id=' . (int) $item->id); ?>">
-									<?php echo $this->escape($item->name); ?>
+									<?php echo $this->escape($item->title); ?>
 								</a>
 							</td>
 

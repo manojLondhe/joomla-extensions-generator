@@ -94,7 +94,7 @@ $sortFields = $this->getSortFields();
 						?>
 
 						<th class="left">
-							<?php echo JHtml::_('searchtools.sort',  'COM_{{ constantCase componentName }}_{{ constantCase viewName }}_NAME', 'a.name', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort',  'COM_{{ constantCase componentName }}_{{ constantCase viewName }}_TITLE', 'a.title', $listDirn, $listOrder); ?>
 						</th>
 
 						<th class="">
@@ -158,7 +158,7 @@ $sortFields = $this->getSortFields();
 							}
 							?>
 
-							<td class="hidden-phone">
+							<td class="center hidden-phone">
 								<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
 							</td>
 
@@ -184,12 +184,12 @@ $sortFields = $this->getSortFields();
 								{
 									?>
 									<a href="<?php echo Route::_('index.php?option=com_{{ lowerCase componentName }}&task={{ lowerCase entityName }}.edit&id=' . (int) $item->id); ?>">
-										<?php echo $this->escape($item->name); ?></a>
+										<?php echo $this->escape($item->title); ?></a>
 									<?php
 								}
 								else
 								{
-									echo $this->escape($item->name);
+									echo $this->escape($item->title);
 								}
 								?>
 							</td>

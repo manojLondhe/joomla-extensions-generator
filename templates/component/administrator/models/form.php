@@ -61,7 +61,7 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends A
 	 * @param   array    $data      An optional array of data for the form to interogate.
 	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return    JForm    A JForm object on success, false on failure
+	 * @return    JForm|boolean    A JForm object on success, false on failure
 	 *
 	 * @since    {{ version }}
 	 */

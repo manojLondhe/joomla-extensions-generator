@@ -42,7 +42,7 @@ HTMLHelper::_('bootstrap.tooltip');
 		method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
 
 		<div class="row-fluid">
-			<?php echo $this->form->renderField('name'); ?>
+			<?php echo $this->form->renderField('title'); ?>
 		</div>
 
 		<?php

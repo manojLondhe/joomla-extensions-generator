@@ -15,8 +15,8 @@
 			<option value="">JGLOBAL_SORT_BY</option>
 			<option value="a.id ASC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_ID_ASC</option>
 			<option value="a.id DESC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_ID_DESC</option>
-			<option value="a.name ASC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_NAME_ASC</option>
-			<option value="a.name DESC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_NAME_DESC</option>
+			<option value="a.title ASC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_TITLE_ASC</option>
+			<option value="a.title DESC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_TITLE_DESC</option>
 			<option value="a.ordering ASC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_ORDERING_ASC</option>
 			<option value="a.ordering DESC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_ORDERING_DESC</option>
 			<option value="a.state ASC">COM_{{ constantCase componentName }}_{{ constantCase viewName }}_ORDER_STATE_ASC</option>

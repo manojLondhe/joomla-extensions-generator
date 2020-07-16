@@ -19,12 +19,12 @@ use Joomla\CMS\Table\Table;
  *
  * @since    {{ version }}
  */
-class {{ sentenceCase componentName }}Table{{ sentenceCase entityName }} extends \Joomla\CMS\Table\Table
+class {{ sentenceCase componentName }}Table{{ sentenceCase entityName }} extends Table
 {
 	/**
 	 * Constructor
 	 *
-	 * @param   JDatabase  &$db  A database connector object
+	 * @param   \JDatabaseDriver  &$db  \JDatabaseDriver object.
 	 */
 	public function __construct(&$db)
 	{

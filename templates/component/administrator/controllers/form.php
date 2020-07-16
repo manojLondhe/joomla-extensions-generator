@@ -15,6 +15,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * Controller for form for {{ camelCase entityName }}
@@ -90,7 +91,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 			{
 				// Check-in failed. Go back to the item and display a notice.
 				$this->setMessage(Text::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()), 'error');
-				$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}' . $this->getRedirectToItemAppend($recordId, $urlVar), false))
+				$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}' . $this->getRedirectToItemAppend($recordId, $urlVar), false));
 
 				return false;
 			}
@@ -169,7 +170,7 @@ class {{ sentenceCase componentName }}Controller{{ sentenceCase viewName }} exte
 			$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
 
-			$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}' . $this->getRedirectToItemAppend($recordId, $urlVar)), false);
+			$this->setRedirect(Route::_('index.php?option=com_{{ lowerCase componentName }}&view={{ lowerCase entityName }}' . $this->getRedirectToItemAppend($recordId, $urlVar), false));
 
 
 			return false;

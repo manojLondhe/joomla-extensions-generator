@@ -53,7 +53,7 @@ Text::script('JGLOBAL_VALIDATION_FORM_FAILED');
 		<?php // @echo $this->form->renderField('modified_by'); ?>
 
 		<div class="row-fluid">
-			<?php echo $this->form->renderField('name'); ?>
+			<?php echo $this->form->renderField('title'); ?>
 		</div>
 
 		<input type="hidden" name="jform[id]"               value="<?php echo $this->item->id; ?>" />

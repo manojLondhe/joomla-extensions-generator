@@ -35,7 +35,7 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends L
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'name', 'a.name',
+				'title', 'a.title',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 			);
@@ -136,8 +136,8 @@ class {{ sentenceCase componentName }}Model{{ sentenceCase viewName }} extends L
 			}
 			else
 			{
-				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where('a.name LIKE ' . $search);
+				$search = $db->quote('%' . $db->escape($search, true) . '%');
+				$query->where('a.title LIKE ' . $search);
 			}
 		}
 
