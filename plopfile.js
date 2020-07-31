@@ -73,7 +73,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'authorUrl',
 				message: 'What is your plugin author Url?',
-				default: 'https:/techjoomla.com',
+				default: 'https://techjoomla.com',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -95,7 +95,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'licence',
 				message: 'What is your plugin licence?',
-				default: 'http:/www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
+				default: 'http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -203,7 +203,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'authorUrl',
 				message: 'What is your module author Url?',
-				default: 'https:/techjoomla.com',
+				default: 'https://techjoomla.com',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -225,7 +225,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'licence',
 				message: 'What is your module licence?',
-				default: 'http:/www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
+				default: 'http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -396,7 +396,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'licence',
 				message: 'What is your module licence?',
-				default: 'http:/www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
+				default: 'http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
@@ -799,7 +799,7 @@ module.exports = function (plop) {
 				type: 'input',
 				name: 'licence',
 				message: 'What is your module licence?',
-				default: 'http:/www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
+				default: 'http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
 						return true;
