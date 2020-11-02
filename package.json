@@ -3,7 +3,7 @@
   "license": "GPLv3",
   "repository": "https://github.com/manojLondhe/joomla-extensions-generator",
   "devDependencies": {
-    "inquirer-directory": "^2.1.0",
+    "inquirer-directory": "^2.2.0",
     "plop": "^2.7.4"
   },
   "dependencies": {}
