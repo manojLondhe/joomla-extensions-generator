@@ -1,13 +1,15 @@
 # What does this do?
 
-This lets you create a basic skeleton for a new 
-- Joomla plugin (Joomla 3.x)
-- Joomla module (Joomla 3.x)
+This lets you create a basic skeleton for a new
+
+- Joomla plugin (Joomla 3.9.x)
+- Joomla module (Joomla 3.9.x)
 - Joomla views (Joomla 3.9.x) (MVC + table, language files as needed are generated)
   - backend list view (MVC)
   - backend form view (MVC + table)
   - frontend list view (MVC)
   - frontend form view (MVC)
+- Joomla CLI script
 
 Thus saving your precious time!
 
@@ -21,7 +23,7 @@ Make sure you have `npm` installed globally
 
 2. `cd` to newly cloned repo
 
-3. Run `npm install`
+3. Run `npm ci` or `npm install`
 
 4. Run `plop` and start using (use `--force` for overrwriting output files)
 

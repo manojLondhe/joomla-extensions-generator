@@ -395,7 +395,7 @@ module.exports = function (plop) {
 			{
 				type: 'input',
 				name: 'licence',
-				message: 'What is your module licence?',
+				message: 'What is your component licence?',
 				default: 'http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL',
 				validate: function (value) {
 					if ((/.+/).test(value)) {
@@ -745,7 +745,7 @@ module.exports = function (plop) {
 			{
 				type: 'input',
 				name: 'cliTitleComment',
-				message: 'What is your CLI file title comment?',
+				message: 'What is your CLI file comment/description?',
 				validate: function (value) {
 					if ((/.+/).test(value)) { return true; }
 					return 'CLI file title comment is required';
