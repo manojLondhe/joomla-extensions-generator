@@ -1,12 +1,10 @@
 {
   "name": "joomla-extensions-generator-using-plop",
-  "license": "UNLICENSED",
+  "license": "GPLv3",
   "repository": "https://github.com/manojLondhe/joomla-extensions-generator",
   "devDependencies": {
     "inquirer-directory": "^2.1.0",
-    "plop": "^2.5.3"
+    "plop": "^2.7.4"
   },
-  "dependencies": {
-    "plop": "^2.5.3"
-  }
+  "dependencies": {}
 }
